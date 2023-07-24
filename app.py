@@ -24,12 +24,17 @@ def get_usuario(usuario_id):
 @app.route('/api/usuarios/delete/<int:usuario_id>', methods=['GET']) 
 def delete(usuario_id):
     delete_users(usuario_id)
-    return jsonify(usuarios)
+    if usuarios:
+        return jsonify(usuarios)
+    else:
+        return "Lista de usuarios vazia"
 
 @app.route('/api/usuarios/adicionar/<string:usuario_name>', methods=['POST', 'GET'])
 def add_users(usuario_name):
     save_user(name=usuario_name, email='eusouanderson', password='123')
     return jsonify(usuarios)
+
+    
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
