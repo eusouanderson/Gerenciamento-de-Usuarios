@@ -70,9 +70,9 @@ def delete_users(user_id):
             session.close()
     else:
         session.query(User).delete()
+        session.commit()
         print("Todos usuarios deletados")
 
 if __name__ == "__main__":
     users = read_users()
-    for user in users:
-        print(user)
+
