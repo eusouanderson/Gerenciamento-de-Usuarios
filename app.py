@@ -29,12 +29,12 @@ def delete(usuario_id):
     else:
         return "Lista de usuarios vazia"
 
+# Endpoint para adicionar usuários 
 @app.route('/api/usuarios/adicionar/<string:usuario_name>', methods=['POST', 'GET'])
 def add_users(usuario_name):
     save_user(name=usuario_name, email='eusouanderson', password='123')
     return jsonify(usuarios)
 
-    
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
