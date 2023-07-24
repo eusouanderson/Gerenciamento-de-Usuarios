@@ -1,7 +1,5 @@
 from collections import UserString
 from flask import Flask, jsonify
-import time
-import subprocess
 from bd import read_users, save_user, delete_users
 
 app = Flask(__name__)
