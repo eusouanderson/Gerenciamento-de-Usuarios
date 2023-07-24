@@ -1,4 +1,7 @@
+from collections import UserString
 from flask import Flask, jsonify
+import time
+import subprocess
 from bd import read_users, save_user, delete_users
 
 app = Flask(__name__)
@@ -33,7 +36,17 @@ def delete(usuario_id):
 @app.route('/api/usuarios/adicionar/<string:usuario_name>', methods=['POST', 'GET'])
 def add_users(usuario_name):
     save_user(name=usuario_name, email='eusouanderson', password='123')
+    updateBD()
     return jsonify(usuarios)
+
+def updateBD():
+    
+    try:
+        users = read_users()
+    except Exception as e:
+        print(f"Erro a atualizar BD {e}")
+    finally:
+        del users
 
 
 if __name__ == '__main__':
