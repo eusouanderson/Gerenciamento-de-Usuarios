@@ -7,7 +7,7 @@ app = Flask(__name__)
 # Lista de usuarios importado do banco de dados
 usuarios = read_users()
 
-# Endpoint para obter a lista completa de usuários
+# Endpoint para obter a lista completa de usuários .
 @app.route('/api/usuarios', methods=['GET'])
 def get_usuarios():
     usuarios = read_users()
