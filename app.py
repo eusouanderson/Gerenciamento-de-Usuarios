@@ -1,5 +1,5 @@
 from collections import UserString
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from bd import read_users, save_user, delete_users
 
 app = Flask(__name__)
@@ -38,12 +38,20 @@ def delete(usuario_id):
         return "Lista de usuarios vazia"
 
 # Endpoint para adicionar usuários 
-@app.route('/api/usuarios/adicionar/<string:usuario_name>', methods=['POST', 'GET'])
-def add_users(usuario_name):
-    
-    save_user(name=usuario_name, email='eusouanderson', password='123')
-    
-    usuarios = read_users()
+@app.route('/api/usuarios/adicionar', methods=['POST', 'GET'])
+def add_users():
+    try:
+        data = request.get_json()
+        if 'name' in data and 'email' in data and 'password' in data:
+            user_name = data['name']
+            user_email = data['email']
+            user_password = data['password']
+        save_user(name= user_name, email= user_email, password= user_password)
+        return jsonify({'message': 'Usuário adicionado com sucesso!'})
+    except:
+        return jsonify({'error': 'Dados inválidos. Certifique-se de enviar name, email e password no corpo da requisição.' }), 400
+    finally:
+        usuarios = read_users()
     return jsonify(usuarios)
 
 if __name__ == '__main__':
