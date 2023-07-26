@@ -2,7 +2,7 @@ import requests
 import json
 
 # URL do endpoint JSON
-url = 'http://192.168.100.50:5000/api/usuarios/adicionar'
+url = 'http://localhost:5000/api/usuarios/adicionar'
 
 # Dados no formato JSON 
 data = {
