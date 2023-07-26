@@ -2,13 +2,14 @@ import requests
 import json
 
 # URL do endpoint JSON
-url = 'http://localhost:5000/api/usuarios/adicionar'
+url = 'https://server-eqbe.onrender.com/api/usuarios/adicionar'
 
 # Dados no formato JSON 
 data = {
-    'name': 'João da Silva',
+    'name': 'Joao da Silva',
     'email': 'joao',
-    'password': '123'
+    'password': '123',
+    
 }
 
 # Converter os dados para JSON
