@@ -1,10 +1,10 @@
 import requests
 import json
 
-# URL do endpoint que você deseja enviar o JSON
+# URL do endpoint JSON
 url = 'http://192.168.100.50:5000/api/usuarios/adicionar'
 
-# Dados no formato JSON que você deseja enviar
+# Dados no formato JSON 
 data = {
     'name': 'João da Silva',
     'email': 'joao',
