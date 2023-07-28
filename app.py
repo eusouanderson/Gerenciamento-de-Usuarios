@@ -38,7 +38,7 @@ def delete(usuario_id):
         return "Lista de usuarios vazia"
 
 # Endpoint para adicionar usuários 
-@app.route('/api/usuarios/adicionar', methods=['POST', 'GET'])
+@app.route('/api/usuarios/adicionar/<', methods=['POST', 'GET'])
 def add_users():
     try:
         data = request.get_json()
