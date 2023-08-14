@@ -38,7 +38,7 @@ def delete(usuario_id):
         return "Lista de usuarios vazia"
 
 # Endpoint para adicionar usuários 
-@app.route('/api/usuarios/adicionar/<', methods=['POST', 'GET'])
+@app.route('/api/usuarios/adicionar/', methods=['POST', 'GET'])
 def add_users():
     try:
         data = request.get_json()
@@ -46,6 +46,8 @@ def add_users():
             user_name = data['name']
             user_email = data['email']
             user_password = data['password']
+            phone = data['phone']
+            user_sector = data['sector']
         save_user(name= user_name, email= user_email, password= user_password)
         return jsonify({'message': 'Usuário adicionado com sucesso!'})
     except:

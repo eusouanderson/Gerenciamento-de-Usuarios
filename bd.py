@@ -11,18 +11,19 @@ class User(Base):
     name = Column(String(100), nullable=False)
     email = Column(String(100), nullable=False)
     password = Column(String(100), nullable=False)
+    phone = Column(String(20))  # Add the phone column
+    sector = Column(String(100))  # Add the sector column
 
-Base.metadata.create_all(engine)    
+Base.metadata.create_all(engine)
 
-def save_user(name, email, password):
-    new_user = User(name=name, email=email, password=password)
+def save_user(name, email, password, phone, sector):
+    new_user = User(name=name, email=email, password=password, phone=phone, sector=sector)
     session = Session()
 
     try:
         session.add(new_user)
-
         session.commit()
-        print("Usuario salvo com sucesso!")
+        print("Usuário salvo com sucesso!")
     except Exception as e:
         session.rollback()
         print(f"Erro ao salvar usuário: {e}, {name}")
@@ -37,16 +38,19 @@ def read_users():
 
         for user in users:
             user_dict = {
-                "id":user.id,
-                "name":user.name,
-                "email":user.email,
-                "password":user.password
+                "id": user.id,
+                "name": user.name,
+                "email": user.email,
+                "password": user.password,
+                "phone": user.phone,
+                "sector": user.sector
             }
             user_data.append(user_dict)
-        
+        print(user_data)
         return user_data
+
     except Exception as e:
-        print(f"Erro ao ler usuarios: {e}")
+        print(f"Erro ao ler usuários: {e}")
     finally:
         session.close()
 
@@ -54,15 +58,15 @@ def delete_users(user_id):
     session = Session()
 
     if user_id != 0:
-    
+
         try:
             user_to_delete = session.query(User).get(user_id)
             if user_to_delete:
                 session.delete(user_to_delete)
                 session.commit()
-                print(f"Usuario com id {user_id} apagado com sucesso!")
+                print(f"Usuário com ID {user_id} apagado com sucesso!")
             else:
-                print(f"Usuario com Id {user_id} não encontrado.")
+                print(f"Usuário com ID {user_id} não encontrado.")
         except Exception as e:
             session.rollback()
             print(f"Erro ao apagar usuários: {e}")
@@ -71,8 +75,6 @@ def delete_users(user_id):
     else:
         session.query(User).delete()
         session.commit()
-        print("Todos usuarios deletados")
+        print("Todos os usuários deletados")
 
-if __name__ == "__main__":
-    users = read_users()
-
+read_users()
