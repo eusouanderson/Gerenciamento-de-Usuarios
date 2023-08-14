@@ -51,7 +51,7 @@ def add_users():
         save_user(name= user_name, email= user_email, password= user_password, sector=user_sector, phone=phone)
         return jsonify({'message': 'Usuário adicionado com sucesso!'})
     except:
-        return jsonify({'error': 'Dados inválidos. Certifique-se de enviar name, email e password no corpo da requisição.' }), 400
+        return jsonify({'error': 'Dados inválidos. Certifique-se de enviar name, email, password, phone e sector no corpo da requisição.' }), 400
     finally:
         usuarios = read_users()
     return jsonify(usuarios)
