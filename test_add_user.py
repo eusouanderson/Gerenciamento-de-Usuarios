@@ -6,10 +6,11 @@ url = 'https://server-2ht4.onrender.com/api/usuarios/adicionar'
 
 # Dados no formato JSON 
 data = {
-    'name': 'Helena',
-    'email': 'helena@outlook.com',
-    'password': '123',
-    
+    'name': 'José Pereira',
+    'email': 'jose@example.com',
+    'password': 'senha3',
+    'sector': 'mecanico',
+    'phone': '11955443322'
 }
 
 # Converter os dados para JSON
