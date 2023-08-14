@@ -77,6 +77,6 @@ def delete_users(user_id):
         session.commit()
         print("Todos os usuários deletados")
 
-read_users()
+#read_users()
 
-#save_user(email="eusouanderson@outlook.com", name="Anderson Rodrigues", password="123", phone="11954914441", sector="Mecanico")
+#save_user(email="admin@outlook.com", name="Admin Busca", password="123", phone="11954914441", sector="Administrador")
