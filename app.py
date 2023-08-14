@@ -42,19 +42,23 @@ def delete(usuario_id):
 def add_users():
     try:
         data = request.get_json()
-        if 'name' in data and 'email' in data and 'password' in data:
-            user_name = data['name']
-            user_email = data['email']
-            user_password = data['password']
-            phone = data['phone']
-            user_sector = data['sector']
-        save_user(name= user_name, email= user_email, password= user_password, sector=user_sector, phone=phone)
+        required_fields = ['name', 'email', 'password', 'phone', 'sector']  # Lista de campos obrigatórios
+
+        for field in required_fields:
+            if field not in data:
+                return jsonify({'error': f'O campo obrigatório "{field}" está faltando no corpo da requisição.'}), 400
+
+        user_name = data['name']
+        user_email = data['email']
+        user_password = data['password']
+        phone = data['phone']
+        user_sector = data['sector']
+
+        save_user(name=user_name, email=user_email, password=user_password, sector=user_sector, phone=phone)
         return jsonify({'message': 'Usuário adicionado com sucesso!'})
-    except:
-        return jsonify({'error': 'Dados inválidos. Certifique-se de enviar name, email, password, phone e sector no corpo da requisição.' }), 400
-    finally:
-        usuarios = read_users()
-        return jsonify(usuarios)
+    except Exception as e:
+        return jsonify({'error': f'Erro ao processar a requisição: {e}'}), 400
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
