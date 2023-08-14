@@ -11,8 +11,8 @@ class User(Base):
     name = Column(String(100), nullable=False)
     email = Column(String(100), nullable=False)
     password = Column(String(100), nullable=False)
-    phone = Column(String(20))  # Add the phone column
-    sector = Column(String(100))  # Add the sector column
+    phone = Column(String(20))  
+    sector = Column(String(100))
 
 Base.metadata.create_all(engine)
 
@@ -78,3 +78,5 @@ def delete_users(user_id):
         print("Todos os usuários deletados")
 
 read_users()
+
+#save_user(email="eusouanderson@outlook.com", name="Anderson Rodrigues", password="123", phone="11954914441", sector="Mecanico")

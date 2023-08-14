@@ -1,5 +1,4 @@
 import requests
-import json
 
 # URL do endpoint JSON
 url = 'https://server-2ht4.onrender.com/api/usuarios/adicionar'
@@ -13,14 +12,8 @@ data = {
     'phone': '11955443322'
 }
 
-# Converter os dados para JSON
-json_data = json.dumps(data)
-
-# Definir os cabeçalhos da requisição
-headers = {'Content-Type': 'application/json'}
-
 # Enviar a requisição POST com os dados JSON para o link
-response = requests.post(url, data=json_data, headers=headers)
+response = requests.post(url, json=data)
 
 # Verificar o resultado da requisição
 if response.status_code == 200:

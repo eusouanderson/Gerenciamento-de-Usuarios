@@ -54,7 +54,7 @@ def add_users():
         return jsonify({'error': 'Dados inválidos. Certifique-se de enviar name, email, password, phone e sector no corpo da requisição.' }), 400
     finally:
         usuarios = read_users()
-    return jsonify(usuarios)
+        return jsonify(usuarios)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
